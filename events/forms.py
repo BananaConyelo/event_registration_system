@@ -2,7 +2,9 @@ from django import forms
 from .models import EventRegistration
 
 class EventRegistrationForm(forms.ModelForm):
-
+    password = forms.CharField(
+        widget=forms.PasswordInput
+    )
     class Meta:
         model = EventRegistration
         fields = ['full_name', 'email', 'age', 'password']
@@ -38,7 +40,7 @@ class EventRegistrationForm(forms.ModelForm):
 
         return age
 
-
+    
     def clean_password(self):
         password = self.cleaned_data.get('password')
 
